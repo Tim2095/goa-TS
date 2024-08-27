@@ -1,18 +1,22 @@
-import { Children, ReactNode } from "react";
+import { Children, FC, PropsWithChildren, ReactNode } from "react";
 
 type CourseGoal = {
+  id: number
   title: string;
-  children: ReactNode
+  children: ReactNode;
+  onDelete: (id: number) => void
 };
 
-const CourseGoal = ({ title, children}: CourseGoal) => {
+// type CourseGoal = PropsWithChildren<{title: string}>
+
+const CourseGoal: FC<CourseGoal> = ({ title, children, id, onDelete}) => {
   return (
     <article>
       <div>
         <h2>{title}</h2>
         {children}
       </div>
-      <button>Delete</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </article>
   );
 };
